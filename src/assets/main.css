@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #152033;
+  background: #f7f8fb;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  text-rendering: geometricPrecision;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.page-shell {
+  @apply min-h-screen bg-[#f7f9fc] text-ink;
+}
+
+.panel {
+  @apply rounded-2xl border border-slate-200/80 bg-white shadow-sm;
+}
+
+.input {
+  @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm outline-none transition focus:border-ocean focus:ring-2 focus:ring-blue-100;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-lg bg-ocean px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100;
+}
+
+.glass-panel {
+  @apply rounded-2xl border border-white/70 bg-white/80 shadow-[0_18px_60px_rgba(21,32,51,0.08)] backdrop-blur-xl;
+}
+
+.page-enter {
+  animation: pageEnter 0.68s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.soft-card {
+  @apply rounded-2xl border border-slate-200/80 bg-white shadow-[0_18px_60px_rgba(21,32,51,0.07)] transition duration-300 hover:-translate-y-1 hover:border-sky-200 hover:shadow-[0_24px_80px_rgba(14,165,233,0.14)];
+}
+
+.interactive-row {
+  @apply transition duration-300 hover:bg-sky-50/70;
+}
+
+.stagger-in {
+  animation: staggerIn 0.65s ease both;
+}
+
+@keyframes staggerIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes floatSoft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-soft {
+  animation: floatSoft 5.5s ease-in-out infinite;
+}
+
+.home-scroll {
+  scroll-snap-type: y proximity;
+}
+
+.home-section {
+  scroll-snap-align: start;
+}
+
+.loader {
+  position: relative;
+  width: 5em;
+  height: 5em;
+  background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
+  animation: spin 3s infinite;
+}
+
+.loader::before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
+  transform: translate3d(0, 0, 0) scale(0.95);
+  filter: blur(20px);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(-45deg);
+  }
+
+  50% {
+    transform: rotate(-360deg);
+    border-radius: 50%;
+  }
+
+  100% {
+    transform: rotate(-45deg);
+  }
+}
