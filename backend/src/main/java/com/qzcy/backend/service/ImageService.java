@@ -1,9 +1,13 @@
 package com.qzcy.backend.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.qzcy.backend.dto.ImageEstimateDto;
 import com.qzcy.backend.entity.ImageRecord;
 
 public interface ImageService {
-    ImageRecord generate(Long userId, String username, String prompt, String qualityCode);
+    ImageRecord submit(Long userId, String username, String prompt, String qualityCode);
+    ImageRecord detail(Long userId, Long imageRecordId);
     Page<ImageRecord> history(Long userId, long page, long size);
+    ImageEstimateDto estimate();
+    void delete(Long userId, Long imageRecordId);
 }

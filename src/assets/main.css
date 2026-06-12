@@ -133,6 +133,15 @@ select {
   filter: blur(20px);
 }
 
+.loader-compact {
+  width: 3.15em;
+  height: 3.15em;
+}
+
+.loader-compact::before {
+  filter: blur(14px);
+}
+
 @keyframes spin {
   0% {
     transform: rotate(-45deg);
@@ -146,4 +155,33 @@ select {
   100% {
     transform: rotate(-45deg);
   }
+}
+
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease,
+    filter 0.18s ease;
+  transform-origin: bottom center;
+}
+
+.dropdown-enter-from,
+.dropdown-leave-to {
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  filter: blur(6px);
+}
+
+.zoom-fade-enter-active,
+.zoom-fade-leave-active {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.zoom-fade-enter-from,
+.zoom-fade-leave-to {
+  opacity: 0;
+  transform: scale(0.98);
 }

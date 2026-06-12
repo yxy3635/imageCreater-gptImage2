@@ -41,6 +41,11 @@ export interface ImageGenerationConfig {
   sortOrder: number
 }
 
+export interface ImageEstimate {
+  averageDurationMs: number
+  sampleCount: number
+}
+
 export interface AdminImageRecord extends ImageRecord {
   username?: string
 }

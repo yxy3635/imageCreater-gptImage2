@@ -128,6 +128,9 @@ public class ImageGenerationConfigServiceImpl implements ImageGenerationConfigSe
 
     private String normalizeEndpointPath(String endpointPath) {
         String normalized = endpointPath.trim();
+        if (!normalized.startsWith("/")) {
+            normalized = "/" + normalized;
+        }
         if (!"/v1/images/generations".equals(normalized) && !"/v1/images/edits".equals(normalized)) {
             throw new BusinessException(400, "1K图像路径只支持 /v1/images/generations 或 /v1/images/edits");
         }

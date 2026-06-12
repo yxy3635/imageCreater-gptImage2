@@ -57,3 +57,14 @@ VALUES
     ('1k', '1K 标准图像', 'dall-e-3', NULL, 'https://api.openai.com', '/v1/images/generations', '1024x1024', 'standard', 0.10, 1, 10, NOW(), NOW()),
     ('2k', '2K 高清图像', 'dall-e-3', NULL, 'https://api.openai.com', '/v1/images/generations', '1792x1024', 'hd', 0.20, 1, 20, NOW(), NOW()),
     ('4k', '4K 超清图像', 'dall-e-3', NULL, 'https://api.openai.com', '/v1/images/generations', '1792x1024', 'hd', 0.40, 1, 30, NOW(), NOW());
+
+CREATE TABLE IF NOT EXISTS image_generation_metric (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    image_record_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    quality_code VARCHAR(20),
+    duration_ms BIGINT NOT NULL,
+    created_at DATETIME NOT NULL,
+    INDEX idx_metric_created (created_at),
+    INDEX idx_metric_user_created (user_id, created_at)
+);

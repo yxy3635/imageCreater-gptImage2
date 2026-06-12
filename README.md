@@ -6,7 +6,8 @@ imageCreater 是一个 AI 图像生成平台，包含门户首页、用户创作
 
 - 门户首页：白色极简风格，Three.js 3D 交互动效，AI 作品展示。
 - 用户认证：注册、登录、邮箱验证码、忘记密码邮箱找回。
-- 用户创作：提示词生图，1K / 2K / 4K 规格选择，余额扣费，生成历史，图片预览与下载。
+- 用户创作：提示词生图，1K / 2K / 4K 规格选择，余额扣费，生成历史，图片预览、下载与删除。
+- 生成反馈：生成时显示读秒和预计完成时间，预计时间基于全站成功生成耗时平均值计算。
 - 用户中心：余额充值模拟、生成记录、资料管理、修改密码。
 - 管理后台：仪表盘、用户管理、余额管理、密码重置、系统日志、生图结果列表。
 - 生图定价：按规格配置模型、API Key、服务商 API 地址、图像路径、尺寸、质量、价格和启用状态。
@@ -93,6 +94,21 @@ ALTER TABLE image_generation_config
 ```
 
 如果字段已存在，不要重复执行对应 `ALTER TABLE`。
+
+如果需要显示生图预计耗时，还需要创建成功耗时统计表：
+
+```sql
+CREATE TABLE IF NOT EXISTS image_generation_metric (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    image_record_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    quality_code VARCHAR(20),
+    duration_ms BIGINT NOT NULL,
+    created_at DATETIME NOT NULL,
+    INDEX idx_metric_created (created_at),
+    INDEX idx_metric_user_created (user_id, created_at)
+);
+```
 
 ## 后端配置
 
