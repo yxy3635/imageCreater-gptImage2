@@ -69,6 +69,10 @@ const setBentoItemRef = (el: any) => {
 }
 
 const title = "imageCreater"
+
+const routerToGithub = () => {
+	window.open('https://github.com/yxy3635/imageCreater-gptImage2' , '_blank')
+}
 </script>
 
 <template>
@@ -84,6 +88,7 @@ const title = "imageCreater"
         <button class="hover:text-blue-600 transition-colors">中转站</button>
         <button class="hover:text-blue-600 transition-colors" @click="scrollToGallery">视觉矩阵</button>
         <button class="hover:text-blue-600 transition-colors">对接文档</button>
+		<button class="hover:text-blue-600 transition-colors" @click="routerToGithub">github</button>
       </div>
 
       <button 
